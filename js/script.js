@@ -10,8 +10,9 @@ let numberList = document.getElementById("numbers-list");
 let visibleForm = document.getElementById("answers-form");
 let inputGroup = document.querySelectorAll("div#input-group > input");
 let button = document.querySelector("button");
+let message = document.getElementById("message")
 
-console.log(numberList, inputGroup, visibleForm, button);
+console.log(numberList, inputGroup, visibleForm, button, message);
 
 // creo un ciclo for per creare 5 numeri casuali che inserisco dentro un'array
 
@@ -42,11 +43,11 @@ button.addEventListener("click", (event) => {
             }
         }
     }
-    console.log(result);
+    //inserisco il risultato nel DOM
+    message.innerText = result;
 })
 
-//cambiamenti nel DOM
-
+//inserisco nel DOM la lista con i numeri da memorizzare
 numberList.innerHTML = `<li>${randomNumbers}</li>`;
 
 // con setInterval decremento la variabile seconds di 1 ogni secondo
@@ -55,6 +56,7 @@ let timer = setInterval(function(){
     // e vado a trasferire il valore in html
     countdown.innerText = seconds
 },1000);
+
 // con setTimeout e clearInterval fermo la variabile seconds prima che scenda sotto lo zero
 setTimeout(function(){
     clearInterval(timer)
