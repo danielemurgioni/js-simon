@@ -1,8 +1,11 @@
 // elementi DOM e variabili
 
+let seconds = 31; //tempo disponibile per memorizzare i numeri
 let randomNumbers = []
 let userNumbers = []
 let result = []
+let countdown = document.getElementById("countdown");
+let instructions = document.getElementById("instructions");
 let numberList = document.getElementById("numbers-list");
 let visibleForm = document.getElementById("answers-form");
 let inputGroup = document.querySelectorAll("div#input-group > input");
@@ -45,7 +48,20 @@ button.addEventListener("click", (event) => {
 //cambiamenti nel DOM
 
 numberList.innerHTML = `<li>${randomNumbers}</li>`;
-visibleForm.classList.remove("d-none");
+
+// con setInterval decremento la variabile seconds di 1 ogni secondo
+let timer = setInterval(function(){
+    seconds--
+    // e vado a trasferire il valore in html
+    countdown.innerText = seconds
+},1000);
+// con setTimeout e clearInterval fermo la variabile seconds prima che scenda sotto lo zero
+setTimeout(function(){
+    clearInterval(timer)
+    numberList.classList.add("d-none");
+    visibleForm.classList.remove("d-none");
+    instructions.innerText = "Inserisci tutti i numeri che ricordi (l'ordine non è importante)"
+},32000)
 
 //Functions
 
