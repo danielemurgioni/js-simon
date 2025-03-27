@@ -40,11 +40,26 @@ button.addEventListener("click", (event) => {
         for(let y=0; y<userNumbers.length; y++){
             if (randomNumbers[i] === userNumbers[y]){
                 result.push(userNumbers[y]);
+                //vado a rimuovere i risultati nella posizione [i] della array randomNumbers cosi facendo semplifico quando vado a comparare result e randomNumbers
+                randomNumbers.splice([i], 1);
+                console.log(randomNumbers);
             }
         }
     }
-    //inserisco il risultato nel DOM
-    message.innerText = result;
+
+    //inserisco il risultato nel DOM e scrivo 3 messaggi differenti in base al risultato
+    if(result.length == 5){
+        message.classList.add("text-success")
+        message.classList.remove("text-danger")
+        message.innerText = `Hai indovinato tutti i numeri! (${result})`;
+    }
+    else if(result.length == 0){
+        message.innerText = `Non ne hai indovinato neanche uno`;
+    }
+    else{
+        message.classList.remove("text-danger")
+        message.innerText = `Hai indovinato ${result.length} numeri! (${result})`;
+    }
 })
 
 //inserisco nel DOM la lista con i numeri da memorizzare
